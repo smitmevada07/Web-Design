@@ -1,0 +1,626 @@
+/* ==========================================================================
+   1. GLOBAL RESET & ENGINE OPTIMIZATIONS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+    font-family: "Roboto", sans-serif;
+    overflow-x: hidden;
+}
+
+/* Fix images layout shifts completely */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Premium Transparent Glass Preloader --- */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Elegant 15% transparent overlay with soft CSS blur filter */
+    background-color: rgba(74, 24, 49, 0.15); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Unique Dual Ring Ripple CSS Animation */
+.unique-ripple-loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.unique-ripple-loader div {
+    position: absolute;
+    border: 4px solid #ffd7ad;
+    opacity: 1;
+    border-radius: 50%;
+    animation: unique-ripple 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.unique-ripple-loader div:nth-child(2) {
+    animation-delay: -0.6s;
+}
+
+@keyframes unique-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+.loader-wrapper.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* ==========================================================================
+   2. DESKTOP VIEW LAYOUTS
+   ========================================================================== */
+/* --- Section 1 --- */
+.section1 {
+    min-height: 100vh;
+    width: 100%;
+    background: url('./images/sec1\ background\ image.png') no-repeat center center/cover;
+}
+
+.nav {
+    width: 100%;
+    background-color: #4a1831;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.nav-list>ul {
+    display: flex;
+    font-size: 25px;
+    list-style-type: none;
+    gap: 70px;
+}
+
+.nav-list ul li a {
+    color: #ffd7ad;
+    font-weight: 400;
+    transition: text-decoration 0.2s ease;
+}
+
+.nav-list ul li a:hover {
+    text-decoration: underline #ffffff;
+}
+
+.sec1-content1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 60px 40px;
+}
+
+.sec1-c1para1 {
+    font-size: 125px;
+    color: #ffd7ad;
+    font-weight: 700;
+}
+
+.sec1-c1para2 {
+    font-size: 30px;
+    color: #ffd7ad;
+    font-weight: 400;
+}
+
+.sec1-c1btn>button, .sec2-c1btn>button, .sec2-m2tbtn>button, .sec3-c1btn>button {
+    width: 322px;
+    height: 65px;
+    border-radius: 33px;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sec1-c1btn>button:hover, .sec2-c1btn>button:hover, .sec2-m2tbtn>button:hover, .sec3-c1btn>button:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.sec1-c1btn>button { background-color: #ffd7ad; }
+.sec1-c1btn>button>a { color: #4a1831; display: block; line-height: 65px; }
+
+/* --- Section 2 --- */
+.section2 {
+    width: 100%;
+    background-color: #ffd7ad;
+    display: flex;
+    flex-direction: column;
+}
+
+.sec2-maincontain1 {
+    padding: 60px 20px 0;
+}
+
+.sec2-content1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.sec2-c1para1 {
+    font-size: 64px;
+    color: #4a1831;
+    font-weight: 700;
+}
+
+.sec2-c1para2 {
+    font-size: 25px;
+    color: #4a1831;
+    font-weight: 400;
+}
+
+.sec2-c1btn>button { background-color: #4a1831; }
+.sec2-c1btn>button>a { color: #ffd7ad; display: block; line-height: 65px; }
+
+.sec2c2-img>img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.sec2-maincontain2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    padding: 80px 50px;
+}
+
+.sec2-m2txtmain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: start;
+    gap: 20px;
+}
+
+.sec2-m2tpara1 {
+    font-size: 75px;
+    color: #4a1831;
+    font-weight: 700;
+}
+
+.sec2-m2tpara2 {
+    font-size: 30px;
+    color: #4a1831;
+    font-weight: 400;
+}
+
+.sec2-m2tbtn>button { background-color: #4a1831; }
+.sec2-m2tbtn>button>a { color: #ffd7ad; display: block; line-height: 65px; }
+
+.sec2-maincontain3 {
+    position: relative;
+    width: 100%;
+}
+
+.sec2-m3txtmain {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 110px;
+    text-align: start;
+    z-index: 2;
+}
+
+.sec2-m3tpara1 {
+    font-size: 167px;
+    text-transform: uppercase;
+    color: #e63956;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.sec2-m3tpara2 {
+    font-size: 64px;
+    text-transform: uppercase;
+    color: #55112e;
+    font-weight: 900;
+}
+
+.sec2-m3tpara3 {
+    font-size: 104px;
+    text-transform: uppercase;
+    color: #6cc5ac;
+    font-weight: 900;
+}
+
+/* --- Section 3 --- */
+.section3 {
+    width: 100%;
+    background-color: #4a1831;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 80px 50px;
+    gap: 30px;
+}
+
+.sec3-content1 {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.sec3-c1para1 {
+    font-size: 75px;
+    color: #ffd7ad;
+    font-weight: 700;
+}
+
+.sec3-c1para2 {
+    font-size: 30px;
+    color: #ffd7ad;
+    font-weight: 400;
+}
+
+.sec3-c1btn>button { background-color: #ffd7ad; }
+.sec3-c1btn>button>a { color: #4a1831; display: block; line-height: 65px; }
+
+/* --- Section 4 --- */
+.section4 {
+    width: 100%;
+    background: url('./images/section6\ image.png') no-repeat center center/cover;
+}
+
+.sec4-bg {
+    width: 100%;
+    min-height: 796px;
+    background-color: rgba(74, 24, 49, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec4-maincon1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 60px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.sec4-para1 {
+    font-size: 42px;
+    color: #ffd7ad;
+    font-weight: 700;
+}
+
+.sec4-para2 {
+    font-size: 45px;
+    color: #ffd7ad;
+    font-weight: 700;
+}
+
+/* --- Section 5 --- */
+.section5 {
+    width: 100%;
+    background-color: #ffd7ad;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 100px 20px;
+}
+
+.sec5-para1 {
+    font-size: 75px;
+    color: #4a1831;
+    font-weight: 700;
+}
+
+.sec5-para2 {
+    font-size: 30px;
+    color: #4a1831;
+    font-weight: 400;
+}
+
+.sec5-searchbar {
+    width: 100%;
+    max-width: 759px;
+    height: 65px;
+    background-color: #ffffff;
+    border-radius: 33px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.sec5-input {
+    flex: 1;
+}
+
+.sec5-input>input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+
+.sec5-input>input:focus {
+    outline: none;
+}
+
+.sec5-btn>button {
+    width: 222px;
+    height: 65px;
+    border-radius: 33px;
+    background-color: #4a1831;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* --- Section 6 (Footer) --- */
+.section6 {
+    width: 100%;
+    background-color: #4a1831;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 100px 50px;
+}
+
+.content1, .content2, .content3, .content4 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sec6-c1main, .sec6-c2main, .sec6-c3main, .sec6-c4main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sec6-c1tite, .sec6-c2tite, .sec6-c3tite, .sec6-c4tite {
+    font-size: 32px;
+    color: #ffd7ad;
+    font-weight: 400;
+}
+
+.sec6-c1para, .sec6-c2list, .sec6-c3list, .sec6-c4list {
+    font-size: 24px;
+    color: #ffd7ad;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.sec6-c2list>ul, .sec6-c3list>ul, .sec6-c4list>ul {
+    list-style-type: none;
+}
+
+.sec6-c2list ul li a:hover, .sec6-c3list ul li a:hover, .sec6-c4list ul li a:hover {
+    text-decoration: underline;
+}
+
+.sec6-c1icon {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.sec6-c1icon img {
+    transition: transform 0.2s ease;
+}
+
+.sec6-c1icon img:hover {
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   3. TABLET LAYOUT MEDIA QUERY (max-width: 992px)
+   ========================================================================= */
+@media only screen and (max-width: 992px) {
+    .nav-list>ul {
+        gap: 30px;
+        font-size: 20px;
+    }
+
+    .sec1-c1para1 { font-size: 80px; }
+    .sec1-c1para2 { font-size: 24px; }
+
+    .sec2-c1para1 { font-size: 48px; }
+    .sec2-maincontain2 {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+    }
+    
+    .sec2-m2txtmain {
+        align-items: center;
+        text-align: center;
+    }
+
+    .sec2-m3txtmain {
+        left: 40px;
+    }
+
+    .sec2-m3tpara1 { font-size: 110px; }
+    .sec2-m3tpara2 { font-size: 44px; }
+    .sec2-m3tpara3 { font-size: 74px; }
+
+    .section3 {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    
+    .sec3-content1 {
+        align-items: center;
+    }
+
+    .sec5-para1 { font-size: 50px; }
+    .sec6-c1para, .sec6-c2list, .sec6-c3list, .sec6-c4list { font-size: 18px; }
+}
+
+/* ==========================================================================
+   4. MOBILE LAYOUT MEDIA QUERY (max-width: 600px)
+   ========================================================================== */
+@media only screen and (max-width: 600px) {
+    .nav {
+        padding: 15px;
+    }
+    
+    .nav-list>ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sec1-content1 {
+        text-align: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .sec1-c1para1 { font-size: 55px; }
+    .sec1-c1para2 { font-size: 18px; }
+    
+    .sec1-c1btn>button, .sec2-c1btn>button, .sec2-m2tbtn>button, .sec3-c1btn>button {
+        width: 260px;
+        height: 55px;
+        font-size: 20px;
+    }
+    
+    .sec1-c1btn>button>a, .sec2-c1btn>button>a, .sec2-m2tbtn>button>a, .sec3-c1btn>button>a {
+        line-height: 55px;
+    }
+
+    .sec2-c1para1 { font-size: 36px; }
+    .sec2-c1para2 { font-size: 18px; }
+    .sec2-m2tpara1 { font-size: 45px; }
+    .sec2-m2tpara2 { font-size: 20px; }
+
+    /* Override relative positions for mobile banner overlays */
+    .sec2-m3txtmain {
+        position: relative;
+        top: 0;
+        transform: none;
+        left: 0;
+        text-align: center;
+        padding: 35px 20px;
+        background-color: #ffd7ad;
+    }
+
+    .sec2-m3tpara1 { font-size: 70px; }
+    .sec2-m3tpara2 { font-size: 28px; }
+    .sec2-m3tpara3 { font-size: 45px; }
+
+    .sec3-c1para1 { font-size: 45px; }
+    .sec3-c1para2 { font-size: 20px; }
+
+    .sec4-bg { min-height: 500px; }
+    .sec4-para1 { font-size: 24px; }
+    .sec4-para2 { font-size: 28px; }
+
+    .sec5-para1 { font-size: 36px; }
+    .sec5-para2 { font-size: 18px; }
+
+    .sec5-searchbar {
+        flex-direction: column;
+        height: auto;
+        border-radius: 15px;
+        padding: 10px;
+        gap: 10px;
+        background-color: transparent;
+    }
+
+    .sec5-input {
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 25px;
+        padding: 12px 20px;
+    }
+
+    .sec5-btn {
+        width: 100%;
+    }
+
+    .sec5-btn>button {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        font-size: 18px;
+    }
+
+    .section6 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .sec6-c1icon {
+        justify-content: center;
+    }
+}
